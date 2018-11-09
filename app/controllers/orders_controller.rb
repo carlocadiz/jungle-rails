@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   def create
    # @order = Order.find(params[:id])
+
     charge = perform_stripe_charge
     order  = create_order(charge)
 
