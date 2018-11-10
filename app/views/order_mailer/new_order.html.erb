@@ -4,7 +4,7 @@
   Thank you for your order</p>
   <p>
     <% @order.line_items.each do |item| %>
-          <%= item.product_id %><br>
+  Product ID: <%= item.product_id %>   Quantity: <%= item.quantity %>   Line Total: $<%= item.total_price_cents / 100%> <br>
     <% end %>
 
     Total: $<%= @order.total_cents / 100.0 %>

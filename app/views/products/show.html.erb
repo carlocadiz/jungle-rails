@@ -27,14 +27,15 @@
 
 
 
-
+            <% if current_user %>
+             <h4> Reviews </h4>
                 <% @reviews.each do |review| %>
                 <div><%= review.description %><br><%= review.rating %>/5  from user: <%=review.user.first_name%></div><br>
                 <% if current_user == review.user%>
                   <p><%= link_to 'delete', product_review_path(product_id: @product.id, id: review.id), method: 'delete' %></p>
                 <% end %>
-
-<%end%>
+          <%end%>
+           <%end%>
 
 
        <% if current_user %>
