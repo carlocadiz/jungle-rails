@@ -22,9 +22,38 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <br>
+          <Br>
+
+
+
+
+                <% @reviews.each do |review| %>
+                <div><%= review.description %><br><%= review.rating %>/5  from user: <%=review.user.first_name%></div><br>
+                <% if current_user == review.user%>
+                  <p><%= link_to 'delete', product_review_path(product_id: @product.id, id: review.id), method: 'delete' %></p>
+                <% end %>
+
+<%end%>
+
+
+       <% if current_user %>
+            <%= form_for :review, url: product_reviews_path(@product)  do |f| %>
+            <p>
+              <%= f.text_area :description %><br>
+              <%= f.select :rating,[['choose a rating',''],['1', 1],['2', 2],['3',3],['4',4],['5',5]]%>
+            </p>
+            <p>
+              <%= f.submit %>
+            </p>
+          <% end %>
+      <% end %>
+  </tbody>
+          </div>
         </dl>
       </div>
     </div>
+
 
   </article>
 

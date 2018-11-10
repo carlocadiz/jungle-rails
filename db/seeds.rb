@@ -132,5 +132,42 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+User.destroy_all
+
+user1 = User.create!(:first_name => 'Carlo',
+                    :last_name => 'Cadiz',
+                    :email => 'carlo@gmail.com',
+                    :password => 'test')
+
+user2 = User.create!(:first_name => 'Olivia',
+                    :last_name => 'Cadiz',
+                    :email => 'olivia@gmail.com',
+                    :password => 'test')
+
+
+r1 = Product.find_or_create_by! id: 1
+r2 = Product.find_or_create_by! id: 3
+r3 = Product.find_or_create_by! id: 8
+
+
+Review.destroy_all
+
+
+
+r1.reviews.create!(:user_id => user1.id,
+                   :product_id => r1.id,
+                   :description => 'Love the shirt, its my favourite now',
+                   :rating => 5)
+
+r2.reviews.create!(:user_id => user1.id,
+                   :product_id => r2.id,
+                   :description => 'Not a fan of this hat, it did not fit my big head',
+                   :rating => 1)
+
+r3.reviews.create!(:user_id => user2.id,
+                   :product_id => r3.id,
+                   :description => 'I love this machine, I dont have to cut my hotdogs anymore',
+                   :rating => 4)
+
 
 puts "DONE!"
