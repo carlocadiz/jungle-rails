@@ -3,7 +3,8 @@ require 'rails_helper'
 
 
 RSpec.describe Product, type: :model do
-  @category = Category.new(name:"Car")
+
+   @category = Category.create(name: "Car")
     subject {
              described_class.new(name: 'Hot Rod', price_cents: 1000,
                       quantity: 1, category_id: 2)
