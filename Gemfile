@@ -45,6 +45,17 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.5'
+
+  gem 'factory_bot_rails'
+
+end
+
+group :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+
+  gem 'database_cleaner'
+
+
 end
 
 group :development do
