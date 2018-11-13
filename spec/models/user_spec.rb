@@ -57,38 +57,42 @@ RSpec.describe User, type: :model do
                         password: 'test', password_confirmation: 'test')
       expect(@user).to_not be_valid
    end
+  end
 
+  describe '.authenticate_with_credentials' do
+    # examples for this class method here
 
+    # @user = User.create(email: 'carlocadiz@yahoo.com', first_name: 'Carlo', last_name: 'Cadiz',
+    #                     password: '123456', password_confirmation: '123456')
+    #@user.save!
 
+    it 'should not successfully login' do
+     # debugger
+      @user = User.create(email: 'carlocadiz@yahoo.com', first_name: 'Carlo', last_name: 'Cadiz',
+                        password: '123456', password_confirmation: '123456')
+      expect(User.authenticate_with_credentials('carlo@gmail.com', @user.password)).to eq nil
+    end
 
+    it 'should successfully login' do
+     # debugger
+      @user = User.create(email: 'carlocadiz@yahoo.com', first_name: 'Carlo', last_name: 'Cadiz',
+                        password: '123456', password_confirmation: '123456')
+      expect(User.authenticate_with_credentials(@user.email, @user.password)).to eq @user
+    end
 
+    it 'should successfully login' do
+     # debugger
+      @user = User.create(email: 'carlocadiz@yahoo.com', first_name: 'Carlo', last_name: 'Cadiz',
+                        password: '123456', password_confirmation: '123456')
+      expect(User.authenticate_with_credentials('   carlocadiz@yahoo.com   ', @user.password)).to eq @user
+    end
 
-
-
-
-
-    # validation tests/examples here
-    # it 'should not save without valid email' do
-    #   subject.email = nil
-    #   expect(subject).to_not be_valid
-    #  # expect(subject.errors.full_messages).to include("Name can't be blank")
-    # end
-
-    # it 'should not save without first name' do
-    #   subject.first_name = nil
-    #   expect(subject).to_not be_valid
-    #   #expect(subject.errors.full_messages).to include("Price can't be blank")
-
-    # end
-
-    # it 'should not save without last name' do
-    #   subject.last_name = nil
-    #   expect(subject).to_not be_valid
-    #  expect(subject.errors.full_messages).to include("Quantity can't be blank")
-
-    # end
-
-
+    it 'should successfully login' do
+     # debugger
+      @user = User.create(email: 'carlocadiz@yahoo.com', first_name: 'Carlo', last_name: 'Cadiz',
+                        password: '123456', password_confirmation: '123456')
+      expect(User.authenticate_with_credentials('   caRLOcadiz@YAHOO.COM ', @user.password)).to eq @user
+    end
 
 
   end
